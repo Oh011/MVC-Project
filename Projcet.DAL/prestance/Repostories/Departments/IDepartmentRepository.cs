@@ -1,18 +1,13 @@
 ﻿using Projcet.DAL.Entites.Departments;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Projcet.DAL.prestance.Repostories.Departments
 {
-    internal interface IDepartmentRepository
+    public interface IDepartmentRepository
     {
 
 
 
-        IEnumerable<Department> GetAll(bool AsNoTracking=true);
+        IEnumerable<Department> GetAll(bool AsNoTracking = true);
 
         Department? GetById(int id);
 
@@ -22,5 +17,7 @@ namespace Projcet.DAL.prestance.Repostories.Departments
 
 
         int DeleteDepartment(Department department);
+
+        public IQueryable<Department> GetAllQueryable();
     }
 }

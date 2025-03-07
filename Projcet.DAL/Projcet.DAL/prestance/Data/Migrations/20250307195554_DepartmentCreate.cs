@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Projcet.DAL.prestance.Data.Migrations
+namespace Projcet.DAL.Projcet.DAL.prestance.Data.Migrations
 {
     /// <inheritdoc />
     public partial class DepartmentCreate : Migration

@@ -1,0 +1,77 @@
+﻿@model CreateDepartmentDto
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<div class="mt-4">
+
+    <h3 class=" text-center">Create Department</h3>
+
+</div>
+
+
+<div class="container  p-5  justify-content-center mt-2">
+
+
+    <div class="container Form-container p-3 m-auto w-75 ">
+
+
+
+
+
+        <form method="post" asp-controller="Department" asp-action="Create">
+
+
+            <div asp-validation-summary="ModelOnly"></div>
+
+
+            <div class="mb-3">
+                <label asp-for="Code" class="form-label">Code</label>
+                <input class="form-control" asp-for="Code">
+                <span asp-validation-for="Code" class="text-danger fw-bold"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label">Name</label>
+                <input class="form-control" asp-for="Name">
+                <span asp-validation-for="Name" class="text-danger fw-bold"></span>
+            </div>
+
+
+            <div class="mb-3">
+                <label asp-for="Description" class="form-label">Description</label>
+                <textarea class="form-control" asp-for="Description"></textarea>
+
+            </div>
+
+
+            <div class="mb-3">
+                <label asp-for="CreationDate" class="form-label">CreationDate</label>
+                <input type="date" class="form-control" asp-for="CreationDate">
+                <span asp-validation-for="CreationDate" class="text-danger fw-bold"></span>
+
+            </div>
+
+
+            <div class="mt-3 m-auto">
+
+
+                <input class="btn btn-primary" type="submit" value="Create" />
+
+                <a asp-controller="Department" asp-action="index" class="btn btn-success">Back to List</a>
+
+
+
+            </div>
+
+        </form>
+
+    </div>
+
+
+
+
+
+</div>
+

@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using Projcet.BLL.Services.Departments;
 using Projcet.DAL.prestance.Data;
-
-using System;
+using Projcet.DAL.prestance.Repostories.Departments;
 
 namespace MVC_Project
 {
@@ -25,6 +25,10 @@ namespace MVC_Project
                 //Options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
 
+            builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+
+            builder.Services.AddScoped<IDepartmentService, DepartmentService>();
+
 
             var app = builder.Build();
 
@@ -41,7 +45,7 @@ namespace MVC_Project
 
             app.UseRouting();
 
-         
+
 
             app.MapControllerRoute(
                 name: "default",

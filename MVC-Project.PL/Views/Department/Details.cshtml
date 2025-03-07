@@ -1,0 +1,98 @@
+﻿@model ReturnDepartmentDetailsDto
+@{
+    ViewData["Title"] = "Details";
+
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white text-center">
+            <h3>Edit Department</h3>
+        </div>
+        <div class="card-body">
+
+
+
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#General" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">General</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#Administrative" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Administrative</button>
+                </li>
+
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="General" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+
+
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label">Name</label>
+                        <input type="text" class="form-control" asp-for="Name" readonly />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label">Description</label>
+                        <textarea class="form-control" asp-for="Description" readonly></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Code" class="form-label">Code</label>
+                        <input type="text" class="form-control" asp-for="Code" readonly />
+                        <span asp-validation-for="Code" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="CreationDate" class="form-label">Creation Date</label>
+                        <input type="date" readonly class="form-control" asp-for="CreationDate" />
+                    </div>
+
+                </div>
+                <div class="tab-pane fade" id="Administrative" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+
+
+
+                    <div class="mb-3">
+                        <label asp-for="CreatedBy" class="form-label">Created By</label>
+                        <input type="number" class="form-control" asp-for="CreatedBy" readonly />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="CreatedAt" class="form-label">Created At</label>
+                        <input type="datetime-local" class="form-control" asp-for="CreatedAt" readonly />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="LastModifiedOn" class="form-label">Last Modified At</label>
+                        <input type="datetime-local" class="form-control" asp-for="LastModifiedOn" readonly />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="LastModifiedBy" class="form-label">Last Modified By</label>
+                        <input type="number" class="form-control" asp-for="LastModifiedBy" readonly />
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+            <div class="text-center mt-3">
+                <a asp-action="Edit" asp-route-id=@Model.Id class="btn btn-success">
+                    <i class="bi bi-save"></i> Edit
+                </a>
+                <a asp-controller="Department" asp-action="Index" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i> Back To List
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
