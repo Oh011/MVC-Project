@@ -9,10 +9,10 @@ using Projcet.DAL.prestance.Data;
 
 #nullable disable
 
-namespace Projcet.DAL.Projcet.DAL.prestance.Data.Migrations
+namespace Projcet.DAL.presistance.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250307195554_DepartmentCreate")]
+    [Migration("20250311163619_DepartmentCreate")]
     partial class DepartmentCreate
     {
         /// <inheritdoc />

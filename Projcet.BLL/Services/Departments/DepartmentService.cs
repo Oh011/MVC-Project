@@ -52,7 +52,7 @@ namespace Projcet.BLL.Services.Departments
                 LastModifiedOn = DateTime.Now,
             };
 
-            return _DepartmentRepository.AddDepartment(CreatedDepartment);
+            return _DepartmentRepository.Add(CreatedDepartment);
         }
 
         public bool DeleteDepartment(int id)
@@ -63,7 +63,7 @@ namespace Projcet.BLL.Services.Departments
 
             if (result != null)
             {
-                var RowsAffected = _DepartmentRepository.DeleteDepartment(result);
+                var RowsAffected = _DepartmentRepository.Delete(result);
 
                 return RowsAffected > 0;
             }
@@ -117,7 +117,7 @@ namespace Projcet.BLL.Services.Departments
             };
 
 
-            return _DepartmentRepository.UpdateDepartment(department);
+            return _DepartmentRepository.Update(department);
         }
     }
 }

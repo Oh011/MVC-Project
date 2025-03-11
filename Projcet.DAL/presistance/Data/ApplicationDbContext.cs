@@ -1,11 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Projcet.DAL.Entites.Departments;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Projcet.DAL.Entites.Employees;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Projcet.DAL.prestance.Data
 {
@@ -36,6 +32,8 @@ namespace Projcet.DAL.prestance.Data
 
 
         public DbSet<Department> Departments { get; set; }
+
+        public DbSet<Employee> Employees { get; set; }
 
     }
 }
