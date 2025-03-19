@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Projcet.BLL.Dtos.Departments
+namespace Project.BLL.Dtos.Departments
 {
     public class CreateDepartmentDto
     {

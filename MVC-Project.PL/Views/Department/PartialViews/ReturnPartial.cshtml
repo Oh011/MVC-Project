@@ -1,0 +1,34 @@
+﻿@model IEnumerable<ReturnDepartmentDto>
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+
+<tbody class="text-center" id="Department_rows">
+
+
+    @foreach (var department in Model)
+    {
+
+        <tr>
+
+            <td>@department.Code</td>
+            <td>@department.Name</td>
+            <td>@department.CreationDate</td>
+
+
+            @* Buttons code duplication in Employee , department {index} --> use partial views*@
+            <partial name="ButtonsView" model="@department.Id" />
+        </tr>
+
+
+
+
+      
+
+
+
+    }
+
+
+</tbody>

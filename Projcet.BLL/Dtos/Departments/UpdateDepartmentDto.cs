@@ -1,4 +1,4 @@
-﻿namespace Projcet.BLL.Dtos.Departments
+﻿namespace Project.BLL.Dtos.Departments
 {
     public class UpdateDepartmentDto
     {

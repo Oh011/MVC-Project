@@ -1,7 +1,7 @@
-﻿using Projcet.DAL.Entites.Employees;
-using Projcet.DAL.presistance.Repostories.Generic;
+﻿using Project.DAL.Entites.Employees;
+using Project.DAL.presistance.Repostories.Generic;
 
-namespace Projcet.DAL.prestance.Repostories.Employees
+namespace Project.DAL.prestance.Repostories.Employees
 {
     public interface IEmployeeRepository : IGenericRepository<Employee>
     {

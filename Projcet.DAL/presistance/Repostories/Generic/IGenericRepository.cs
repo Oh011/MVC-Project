@@ -1,6 +1,6 @@
-﻿using Projcet.DAL.Entites;
+﻿using Project.DAL.Entites;
 
-namespace Projcet.DAL.presistance.Repostories.Generic
+namespace Project.DAL.presistance.Repostories.Generic
 {
     public interface IGenericRepository<T> where T : ModelBase
     {
@@ -17,11 +17,11 @@ namespace Projcet.DAL.presistance.Repostories.Generic
         public T? GetById(int id);
 
 
-        public int Add(T entity);
+        public void Add(T entity);
 
-        public int Update(T entity);
+        public void Update(T entity);
 
 
-        public int Delete(T entity);
+        public void Delete(T entity);
     }
 }

@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Projcet.DAL.Entites;
-using Projcet.DAL.prestance.Data;
+using Project.DAL.Entites;
+using Project.DAL.prestance.Data;
 
-namespace Projcet.DAL.presistance.Repostories.Generic
+namespace Project.DAL.presistance.Repostories.Generic
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : ModelBase
     {
@@ -15,21 +15,22 @@ namespace Projcet.DAL.presistance.Repostories.Generic
             _dbSet = _dbContext.Set<T>();
         }
 
-        public int Add(T entity)
+        public void Add(T entity)
         {
 
             _dbSet.Add(entity);
 
-            return _dbContext.SaveChanges();
+
         }
 
-        public int Delete(T entity)
+        public void Delete(T entity)
         {
 
-            _dbSet.Remove(entity);
+
+            entity.IsDeleted = true;
 
 
-            return _dbContext.SaveChanges();
+
         }
 
         public IEnumerable<T> GetAll(bool AsNoTracking = true)
@@ -60,12 +61,12 @@ namespace Projcet.DAL.presistance.Repostories.Generic
             return _dbSet.Find(id);
         }
 
-        public int Update(T entity)
+        public void Update(T entity)
         {
 
             _dbSet.Update(entity);
 
-            return _dbContext.SaveChanges();
+
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Projcet.DAL.Entites
+namespace Project.DAL.Entites
 {
     public class ModelBase
     {

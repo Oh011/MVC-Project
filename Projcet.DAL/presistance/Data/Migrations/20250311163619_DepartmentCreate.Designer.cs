@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Projcet.DAL.prestance.Data;
+using Project.DAL.prestance.Data;
 
 #nullable disable
 
-namespace Projcet.DAL.presistance.Data.Migrations
+namespace Project.DAL.presistance.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20250311163619_DepartmentCreate")]

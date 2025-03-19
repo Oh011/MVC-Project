@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MVC_Project.ViewModels.Departments;
-using Projcet.BLL.Dtos.Departments;
-using Projcet.BLL.Services.Departments;
+using Project.BLL.Dtos.Departments;
+using Project.BLL.Services.Departments;
 
 namespace MVC_Project.Controllers
 {
@@ -32,6 +32,24 @@ namespace MVC_Project.Controllers
         }
 
 
+
+        public IActionResult SearchByName(string Name)
+        {
+
+            var result = _DepartmentService.SearchByName(Name);
+
+            if (Request.Headers["Source"].ToString() == "JS")
+            {
+                return PartialView("PartialViews\\ReturnPartial", result);
+
+            }
+
+
+
+            return View("Index", result);
+        }
+
+
         [HttpGet]
 
         public IActionResult Create()
@@ -43,7 +61,7 @@ namespace MVC_Project.Controllers
 
 
         [HttpPost]
-
+        [ValidateAntiForgeryToken]
 
         public IActionResult Create(CreateDepartmentDto entity)
         {
@@ -64,7 +82,10 @@ namespace MVC_Project.Controllers
 
 
                 if (RowsAffected > 0)
+                {
+                    TempData["Msg"] = "Success";
                     return RedirectToAction(nameof(Index));
+                }
 
                 else
                 {
@@ -154,6 +175,7 @@ namespace MVC_Project.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
 
         public IActionResult Edit(int id, DepartmentEditViewModel entity)
         {
@@ -227,6 +249,7 @@ namespace MVC_Project.Controllers
 
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
 
         public IActionResult Delete(int id)
         {

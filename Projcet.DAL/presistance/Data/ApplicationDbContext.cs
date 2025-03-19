@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Projcet.DAL.Entites.Departments;
-using Projcet.DAL.Entites.Employees;
+using Project.DAL.Entites.Departments;
+using Project.DAL.Entites.Employees;
 using System.Reflection;
 
-namespace Projcet.DAL.prestance.Data
+namespace Project.DAL.prestance.Data
 {
     public class ApplicationDbContext : DbContext
     {

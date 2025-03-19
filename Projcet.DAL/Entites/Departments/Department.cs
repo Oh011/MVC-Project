@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Project.DAL.Entites.Employees;
 
-namespace Projcet.DAL.Entites.Departments
+namespace Project.DAL.Entites.Departments
 {
-    public class Department:ModelBase
+    public class Department : ModelBase
     {
 
         public string Name { get; set; } = null!;
@@ -17,6 +13,10 @@ namespace Projcet.DAL.Entites.Departments
         public string Code { get; set; } = null!;
 
 
-        public DateOnly CreationDate { get; set; } 
+        public DateOnly CreationDate { get; set; }
+
+
+
+        virtual public ICollection<Employee> Employees { get; set; } = new HashSet<Employee>();
     }
 }

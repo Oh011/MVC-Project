@@ -1,7 +1,7 @@
-﻿using Projcet.DAL.Entites.Departments;
-using Projcet.DAL.presistance.Repostories.Generic;
+﻿using Project.DAL.Entites.Departments;
+using Project.DAL.presistance.Repostories.Generic;
 
-namespace Projcet.DAL.prestance.Repostories.Departments
+namespace Project.DAL.prestance.Repostories.Departments
 {
     public interface IDepartmentRepository : IGenericRepository<Department>
     {

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ReturnEmployeeDto>
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+
+<tbody class="text-center" id="Employee_Rows">
+
+
+    @foreach (var employee in Model)
+    {
+
+        //When Razor starts iterating with @foreach, the database query is sent and executed.
+
+        <tr>
+
+            <td>@Html.DisplayFor(e => employee.Name)</td>
+            <td>@Html.DisplayFor(e => employee.Email)</td>
+            <td>@Html.DisplayFor(e => employee.EmployeeType)</td>
+            <td>@Html.DisplayFor(e => employee.Age)</td>
+            <td>@Html.DisplayFor(e => employee.Salary)</td>
+            <td>@employee.IsActive</td>
+            <td>@Html.DisplayFor(e => employee.Gender)</td>
+            <td>@Html.DisplayFor(e => employee.Department)</td>
+
+
+
+            <partial name="ButtonsView" model="@employee.Id" />
+
+
+        </tr>
+
+
+
+
+
+     
+
+
+
+
+    }
+
+
+</tbody>

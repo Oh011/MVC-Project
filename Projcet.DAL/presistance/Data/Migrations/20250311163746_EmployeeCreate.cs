@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Projcet.DAL.presistance.Data.Migrations
+namespace Project.DAL.presistance.Data.Migrations
 {
     /// <inheritdoc />
     public partial class EmployeeCreate : Migration

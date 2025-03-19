@@ -1,6 +1,6 @@
-﻿using Projcet.BLL.Dtos.Departments;
+﻿using Project.BLL.Dtos.Departments;
 
-namespace Projcet.BLL.Services.Departments
+namespace Project.BLL.Services.Departments
 {
     public interface IDepartmentService
     {
@@ -17,6 +17,9 @@ namespace Projcet.BLL.Services.Departments
         public int UpdateDepartment(UpdateDepartmentDto department);
 
         bool DeleteDepartment(int id);
+
+
+        IEnumerable<ReturnDepartmentDto> SearchByName(string Name);
 
 
 

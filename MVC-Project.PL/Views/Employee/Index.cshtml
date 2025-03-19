@@ -1,11 +1,11 @@
-﻿@model  IEnumerable<ReturnDepartmentDto>
+﻿@model IEnumerable<ReturnEmployeeDto>
 @{
     ViewData["Title"] = "Index";
-    ViewData["Name"] = "Department";
+    ViewData["Name"] = "Employee";
+
 }
 
-
-<h1 class="text-center">All Departments</h1>
+<h1 class="text-center">All Employees</h1>
 
 
 @if (!string.IsNullOrEmpty(TempData["Msg"] as string))
@@ -32,8 +32,10 @@
 <div class="CreateButton">
 
 
-    <a class=" btn btn-primary" asp-controller="Department" asp-action="Create"> Create Department</a>
+    <a class=" btn btn-primary" asp-controller="Employee" asp-action="Create"> Create Employee</a>
 </div>
+
+
 
 <div class="Search Container">
 
@@ -46,7 +48,7 @@
 
                     <form asp-action="SearchByName" method="get" class="d-flex justify-content-center gap-1">
 
-                        <input id="DepartmentSearch" type="text" name="Name" class="form-control search-input" placeholder="Search...">
+                        <input id="EmployeeSearch" type="text" name="Name" class="form-control search-input" placeholder="Search...">
 
                         <button type="submit" class="btn btn-outline-primary">
                             <i class="fas fa-search"></i>
@@ -75,9 +77,14 @@
 
             <thead>
                 <tr class="text-center">
-                    <th scope="col">@Html.DisplayNameFor(d => d.Code)</th>
-                    <th scope="col">@Html.DisplayNameFor(d => d.Name)</th>
-                    <th scope="col">@Html.DisplayNameFor(d => d.CreationDate)</th>
+                    <th scope="col">@Html.DisplayNameFor(E => E.Name)</th>
+                    <th scope="col">@Html.DisplayNameFor(E => E.Email)</th>
+                    <th scope="col">@Html.DisplayNameFor(E => E.EmployeeType)</th>
+                    <th scope="col">@Html.DisplayNameFor(E => E.Age)</th>
+                    <th scope="col">@Html.DisplayNameFor(E => E.Salary)</th>
+                    <th scope="col">@Html.DisplayNameFor(E => E.IsActive)</th>
+                    <th scope="col">@Html.DisplayNameFor(E => E.Gender)</th>
+                    <th scope="col">@Html.DisplayNameFor(E => E.Department)</th>
                     <th scope="col">Details</th>
                     <th scope="col">Update</th>
                     <th scope="col">Delete</th>
@@ -85,14 +92,12 @@
                 </tr>
             </thead>
 
-            
 
 
-                        <partial name="PartialViews\ReturnPartial" model="@Model"></partial>
-                       
 
-  
+ 
 
+            <partial name="PartialViews\ReturnPartial" model="@Model"></partial>
 
         </table>
 
@@ -104,14 +109,11 @@
 
 
         <div class="alert alert-info mt-3">
-            <h2>No Departments found</h2>
+            <h2>No Employees found</h2>
 
         </div>
 
 
     }
 </div>
-
-
-
 

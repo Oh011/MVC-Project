@@ -1,37 +1,39 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Projcet.BLL.Dtos.Departments;
-using Projcet.DAL.Entites.Departments;
-using Projcet.DAL.prestance.Repostories.Departments;
+using Project.BLL.Dtos.Departments;
+using Project.DAL.Entites.Departments;
+using Project.DAL.presistance.UnitOfWork;
 
-namespace Projcet.BLL.Services.Departments
+namespace Project.BLL.Services.Departments
 {
     public class DepartmentService : IDepartmentService
     {
 
-        private readonly IDepartmentRepository _DepartmentRepository;
+        private readonly IUnitOfWork _UnitOfWork;
 
 
 
-        public DepartmentService(IDepartmentRepository departmentRepository)
+        public DepartmentService(IUnitOfWork unitOfWork)
         {
 
-            _DepartmentRepository = departmentRepository;
+            this._UnitOfWork = unitOfWork;
+
         }
 
         public IEnumerable<ReturnDepartmentDto> GetAllDepartments()
         {
 
 
-            var result = _DepartmentRepository.GetAllQueryable().Select(D => new ReturnDepartmentDto
-            {
+            var result = _UnitOfWork.DepartmentRepository.GetAllQueryable().Where(d => d.IsDeleted == false)
+                .Select(D => new ReturnDepartmentDto
+                {
 
-                Id = D.Id,
-                Name = D.Name,
-                Description = D.Description,
-                Code = D.Code,
-                CreationDate = D.CreationDate,
+                    Id = D.Id,
+                    Name = D.Name,
+                    Description = D.Description,
+                    Code = D.Code,
+                    CreationDate = D.CreationDate,
 
-            }).AsNoTracking().ToList();
+                }).AsNoTracking().ToList();
 
 
             return result;
@@ -52,18 +54,23 @@ namespace Projcet.BLL.Services.Departments
                 LastModifiedOn = DateTime.Now,
             };
 
-            return _DepartmentRepository.Add(CreatedDepartment);
+            _UnitOfWork.DepartmentRepository.Add(CreatedDepartment);
+
+            return _UnitOfWork.Complete();
         }
 
         public bool DeleteDepartment(int id)
         {
 
-            var result = _DepartmentRepository.GetById(id);
+            var result = _UnitOfWork.DepartmentRepository.GetById(id);
 
 
             if (result != null)
             {
-                var RowsAffected = _DepartmentRepository.Delete(result);
+                _UnitOfWork.DepartmentRepository.Delete(result);
+
+                var RowsAffected = _UnitOfWork.Complete();
+
 
                 return RowsAffected > 0;
             }
@@ -76,7 +83,7 @@ namespace Projcet.BLL.Services.Departments
         {
 
 
-            var department = _DepartmentRepository.GetById(id);
+            var department = _UnitOfWork.DepartmentRepository.GetById(id);
 
 
             if (department != null)
@@ -117,7 +124,32 @@ namespace Projcet.BLL.Services.Departments
             };
 
 
-            return _DepartmentRepository.Update(department);
+            _UnitOfWork.DepartmentRepository.Update(department);
+
+            return _UnitOfWork.Complete();
+        }
+
+        public IEnumerable<ReturnDepartmentDto> SearchByName(string Name)
+        {
+
+
+            var result = _UnitOfWork.DepartmentRepository.GetAllQueryable().Where(D => D.IsDeleted == false &&
+
+
+            (string.IsNullOrEmpty(Name) || D.Name.ToLower().Contains(Name.ToLower()))
+
+            ).Select(D => new ReturnDepartmentDto
+            {
+                Id = D.Id,
+                Name = D.Name,
+                //Description = D.Description,
+                Code = D.Code,
+                CreationDate = D.CreationDate,
+
+            }).AsNoTracking().ToList();
+
+
+            return result;
         }
     }
 }

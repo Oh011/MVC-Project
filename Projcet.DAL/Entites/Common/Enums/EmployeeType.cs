@@ -1,4 +1,4 @@
-﻿namespace Projcet.DAL.Entites.Common.Enums
+﻿namespace Project.DAL.Entites.Common.Enums
 {
     public enum EmployeeType
     {

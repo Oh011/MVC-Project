@@ -1,6 +1,7 @@
-﻿using Projcet.DAL.Entites.Common.Enums;
+﻿using Project.DAL.Entites.Common.Enums;
+using Project.DAL.Entites.Departments;
 
-namespace Projcet.DAL.Entites.Employees
+namespace Project.DAL.Entites.Employees
 {
     public class Employee : ModelBase
     {
@@ -35,5 +36,13 @@ namespace Projcet.DAL.Entites.Employees
 
 
         public EmployeeType EmployeeType { get; set; } // stored as int in Database
+
+
+        virtual public Department? Department { get; set; }
+
+
+        public int? DepartmentId { get; set; }
+
+
     }
 }

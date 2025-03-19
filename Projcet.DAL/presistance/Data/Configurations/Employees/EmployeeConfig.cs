@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Projcet.DAL.Entites.Common.Enums;
-using Projcet.DAL.Entites.Employees;
+using Project.DAL.Entites.Common.Enums;
+using Project.DAL.Entites.Employees;
 
-namespace Projcet.DAL.prestance.Data.Configurations.Employees
+namespace Project.DAL.prestance.Data.Configurations.Employees
 {
     internal class EmployeeConfig : IEntityTypeConfiguration<Employee>
     {
