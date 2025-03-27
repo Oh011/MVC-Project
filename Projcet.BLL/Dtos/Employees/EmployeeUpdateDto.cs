@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.AspNetCore.Http;
 using Project.DAL.Entites.Common.Enums;
 using System.ComponentModel.DataAnnotations;
 
@@ -57,6 +58,9 @@ namespace Project.BLL.Dtos.Employees
 
 
         public EmployeeType EmployeeType { get; set; } // stored as int
+
+
+        public IFormFile? Image { get; set; }
 
 
 

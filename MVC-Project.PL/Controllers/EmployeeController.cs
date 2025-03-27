@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Project.BLL.Dtos.Departments;
 using Project.BLL.Dtos.Employees;
@@ -8,6 +9,9 @@ using Project.DAL.Entites.Common.Enums;
 
 namespace MVC_Project.Controllers
 {
+
+
+    [Authorize]
     public class EmployeeController : Controller
     {
 
@@ -81,7 +85,7 @@ namespace MVC_Project.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(CreateEmployeeDto employee)
+        public async Task<IActionResult> Create(CreateEmployeeDto employee)
         {
 
             if (!ModelState.IsValid)
@@ -94,7 +98,7 @@ namespace MVC_Project.Controllers
             var message = string.Empty;
             try
             {
-                var Result = this.employeeService.CreateEmployee(employee);
+                var Result = await this.employeeService.CreateEmployee(employee);
 
 
                 if (Result > 0)
@@ -236,7 +240,7 @@ namespace MVC_Project.Controllers
             {
 
 
-                var result = this.employeeService.UpdateEmployee(employee);
+                var result = await this.employeeService.UpdateEmployee(employee);
 
 
                 if (result > 0)
@@ -302,6 +306,24 @@ namespace MVC_Project.Controllers
             }
 
             return RedirectToAction(nameof(Index));
+
+
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteImage(int Id)
+        {
+
+
+
+            if (await employeeService.DeleteProfileImage(Id))
+                return RedirectToAction(nameof(Details), new { id = Id });
+
+
+            return RedirectToAction(nameof(Index));
+
+
 
 
         }

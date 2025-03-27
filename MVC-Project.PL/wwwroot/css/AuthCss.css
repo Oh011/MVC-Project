@@ -1,0 +1,37 @@
+﻿
+
+
+body {
+    background: linear-gradient(40deg,#DBE6F6,#C5796D)
+}
+
+
+.Form-Container {
+    height: 100vh;
+}
+
+.FormInput {
+    border: none;
+    border-bottom: white 1px solid;
+    width: 90%;
+    outline: none;
+    color: white;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: transparent;
+}
+
+    .FormInput::placeholder {
+        color: white;
+    }
+
+
+.inside {
+    width: 500px;
+    padding: 20px;
+    /* border: 3px solid black; */
+    border-radius: 10px;
+    background-color: rgb(0, 0, 0,0.5);
+    /* background-color: red; */
+}

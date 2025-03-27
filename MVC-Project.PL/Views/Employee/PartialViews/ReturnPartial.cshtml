@@ -14,6 +14,14 @@
 
         <tr>
 
+            <td>
+
+                <img src="~/File//Images/@(employee.ImageName!=null?employee.ImageName:"NotFound.jpg")"
+                     width="40px" height="40px" class="card-img-top rounded-circle" alt="Profile Image" onerror="this.onerror=null; this.src='/File/Images/NotFound.jpg';">
+
+
+            </td>
+
             <td>@Html.DisplayFor(e => employee.Name)</td>
             <td>@Html.DisplayFor(e => employee.Email)</td>
             <td>@Html.DisplayFor(e => employee.EmployeeType)</td>
@@ -25,7 +33,7 @@
 
 
 
-            <partial name="ButtonsView" model="@employee.Id" />
+            <partial name="ButtonsView" model="@employee.Id.ToString()" />
 
 
         </tr>

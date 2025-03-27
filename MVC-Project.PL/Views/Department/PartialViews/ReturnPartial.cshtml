@@ -18,7 +18,7 @@
 
 
             @* Buttons code duplication in Employee , department {index} --> use partial views*@
-            <partial name="ButtonsView" model="@department.Id" />
+            <partial name="ButtonsView" model="@department.Id.ToString()" />
         </tr>
 
 

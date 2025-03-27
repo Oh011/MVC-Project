@@ -43,6 +43,8 @@ namespace Project.DAL.Entites.Employees
 
         public int? DepartmentId { get; set; }
 
+        public string? ImageName { get; set; }
+
 
     }
 }

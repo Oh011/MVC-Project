@@ -1,0 +1,65 @@
+﻿
+
+@model IEnumerable<UserViewModel>
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+
+<tbody class="text-center" id="User_rows">
+
+
+    @foreach (var User in Model)
+    {
+
+        <tr>
+
+            <td>@User.Id</td>
+            <td>@User.FName</td>
+            <td>@User.LName</td>
+            <td>@User.Email</td>
+            <td>@string.Join(",",User.Roles)</td>
+
+
+
+            @* Buttons code duplication in Employee , department {index} --> use partial views*@
+            <partial name="ButtonsView" model="@User.Id" />
+        </tr>
+
+
+
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Department</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete this User?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+
+                        <form method="post" asp-action="Delete" asp-route-id=@User.Id>
+
+
+                            <input type="submit" class="btn btn-danger" value="Delete">
+
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    }
+
+
+</tbody>
+

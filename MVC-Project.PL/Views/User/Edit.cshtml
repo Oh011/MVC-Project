@@ -1,0 +1,57 @@
+﻿@model UserViewModel
+@{
+    ViewData["Title"] = "Edit";
+
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white text-center">
+            <h3>Edit User</h3>
+        </div>
+        <div class="card-body">
+            <form method="post" asp-action="Edit" enctype="multipart/form-data">
+
+                <div class="mb-3">
+                    <label asp-for="FName" class="form-label">Name</label>
+                    <input class="form-control" asp-for="FName">
+                    <span asp-validation-for="FName" class="text-danger fw-bold"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="LName" class="form-label">LName</label>
+                    <input class="form-control" asp-for="LName">
+                    <span asp-validation-for="LName" class="text-danger fw-bold"></span>
+
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label">Email</label>
+                    <input class="form-control" asp-for="Email">
+                    <span asp-validation-for="Email" class="text-danger fw-bold"></span>
+                </div>
+
+
+      
+
+
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn btn-success">
+                        <i class="bi bi-save"></i> Edit
+                    </button>
+
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left"></i> Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section ValidationScripts {
+
+
+
+    <partial name="_ValidationScriptsPartial"></partial>
+
+}

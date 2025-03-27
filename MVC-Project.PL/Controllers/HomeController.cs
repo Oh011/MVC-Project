@@ -4,6 +4,8 @@ using System.Diagnostics;
 
 namespace MVC_Project.Controllers
 {
+
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

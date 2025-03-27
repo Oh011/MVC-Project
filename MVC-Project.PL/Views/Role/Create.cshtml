@@ -1,0 +1,75 @@
+﻿@model RolesViewModel
+@{
+    ViewData["Title"] = "Create";
+
+    ViewBag.Action = "Create";
+}
+
+
+<div class="mt-4">
+
+    <h3 class=" text-center">Create Role</h3>
+
+</div>
+
+
+<div class="container  p-5  justify-content-center mt-2">
+
+
+    <div class="container Form-container p-3 m-auto w-75 ">
+
+
+
+<form method="post"  asp-action="Create">
+
+
+    <div asp-validation-summary="ModelOnly"></div>
+
+
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label">Name</label>
+        <input class="form-control" asp-for="Name">
+        <span asp-validation-for="Name" class="text-danger fw-bold"></span>
+    </div>
+
+
+
+
+
+
+    
+
+    <div class="mt-3 m-auto">
+
+
+        <input class="btn btn-primary" type="submit" value="Create" />
+        <a  asp-action="index" class="btn btn-success">Back to List</a>
+
+    </div>
+    
+
+
+</form>
+
+
+    </div>
+
+
+
+
+
+</div>
+
+
+@section ValidationScripts {
+
+
+
+    <partial name="_ValidationScriptsPartial"></partial>
+
+}
+
+
+
+
+

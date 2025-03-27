@@ -1,0 +1,73 @@
+﻿@model LogInViewModel
+@{
+    ViewData["Title"] = "LogIn";
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+}
+
+
+
+
+
+
+
+<div class="Form-Container   d-flex justify-content-center align-items-center">
+
+
+
+    <div class="inside">
+
+        <h2 class="text-center text-white">Log In</h2>
+
+        <form asp-action="LogIn" method="post" class="mt-4 d-flex align-items-center gap-2 flex-column">
+
+
+            <div asp-validation-summary="ModelOnly"></div>
+
+
+
+            <input asp-for="Email" placeholder="Email" class="FormInput">
+            <span class="text-danger fw-bold align-self-start ps-3" asp-validation-for="Email"></span>
+
+
+            <input asp-for="Password" type="password" placeholder="Password" class="FormInput">
+            <span class="text-danger fw-bold align-self-start ps-3" asp-validation-for="Password"></span>
+
+
+
+
+
+            <div>
+                <input type="checkbox" asp-for="RememberMe" />
+                <span class="text-white fw-bold">Remember Me</span>
+
+            </div>
+
+
+            <button class="btn btn-primary w-50 mt-1">Sign In</button>
+
+
+
+
+        </form>
+
+        <p class="text-center mt-3">Do Not Have Account ? <a class="link-light" asp-action="Register">Sign Up</a></p>
+        <p class="text-center mt-3">Forgot Your password ? <a class="link-light" asp-action="ForgetPassword">Reset Password</a></p>
+
+    </div>
+
+
+</div>
+
+
+
+
+
+
+@section ValidationScripts {
+
+
+
+    <partial name="_ValidationScriptsPartial"></partial>
+
+}
+

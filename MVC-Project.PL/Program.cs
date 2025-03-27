@@ -1,6 +1,10 @@
 using Demo.BLL.Mapping;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Projcet.BLL.Common.Services;
+using Projcet.BLL.Common.Services.AttachmentService;
+using Projcet.DAL.Entites.Identity;
 using Project.BLL.Services.Departments;
 using Project.BLL.Services.Employees;
 using Project.DAL.presistance.UnitOfWork;
@@ -45,6 +49,20 @@ namespace MVC_Project
 
 
 
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>().
+                AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+
+
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Account/Login";  // Redirect to Login when unauthorized
+                options.AccessDeniedPath = "/Account/AccessDenied"; // Optional: Access Denied Page
+            });
+
+
+
+
             builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
 
             builder.Services.AddScoped<IDepartmentService, DepartmentService>();
@@ -57,7 +75,9 @@ namespace MVC_Project
             builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 
+            builder.Services.AddScoped<IEmailService, EmailService>();
 
+            builder.Services.AddScoped<IAttachmentService, AttachmentService>();
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 
@@ -75,6 +95,12 @@ namespace MVC_Project
             app.UseStaticFiles();
 
             app.UseRouting();
+
+
+            app.UseAuthentication();
+            app.UseAuthorization();
+
+
 
 
 

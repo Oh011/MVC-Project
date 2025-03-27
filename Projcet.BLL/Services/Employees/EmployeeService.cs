@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using Projcet.BLL.Common.Services.AttachmentService;
 using Project.BLL.Dtos.Employees;
 using Project.DAL.Entites.Employees;
 using Project.DAL.presistance.UnitOfWork;
@@ -11,18 +13,21 @@ namespace Project.BLL.Services.Employees
 
         private readonly IUnitOfWork _UnitOfWork;
         private readonly IMapper _mapper;
+        private readonly IAttachmentService _attachmentService;
 
 
 
 
 
-        public EmployeeService(IUnitOfWork UnitOfWork, IMapper mapper)
+        public EmployeeService(IUnitOfWork UnitOfWork, IMapper mapper, IAttachmentService attachmentService)
         {
 
             _UnitOfWork = UnitOfWork;
             _mapper = mapper;
+            _attachmentService = attachmentService;
+
         }
-        public int CreateEmployee(CreateEmployeeDto Entity)
+        public async Task<int> CreateEmployee(CreateEmployeeDto Entity)
         {
 
             var employee = _mapper.Map<Employee>(Entity);
@@ -31,6 +36,15 @@ namespace Project.BLL.Services.Employees
 
 
             //  Set additional properties if needed
+
+            if (Entity.Image != null)
+            {
+
+
+
+                employee.ImageName = await _attachmentService.Upload(Entity.Image, "Images");
+
+            }
             employee.LastModifiedBy = 1;
             employee.CreatedBy = 1;
 
@@ -75,7 +89,9 @@ namespace Project.BLL.Services.Employees
                 Email = E.Email,
                 Gender = E.Gender.ToString(),
                 EmployeeType = E.EmployeeType.ToString(),
-                Department = E.Department.Name //lazy loading
+                Department = E.Department.Name, //lazy loading
+                ImageName = E.ImageName,
+
 
 
             });
@@ -91,7 +107,9 @@ namespace Project.BLL.Services.Employees
             if (result != null)
             {
 
-                var ReturnEmployee = _mapper.Map<ReturnEmployeeDetailsDto>(result); ;
+                var ReturnEmployee = _mapper.Map<ReturnEmployeeDetailsDto>(result);
+
+                ReturnEmployee.ImageName = result.ImageName;
 
                 ReturnEmployee.Department = result.Department != null ? result.Department.Name : null;
 
@@ -128,12 +146,38 @@ namespace Project.BLL.Services.Employees
             return result;
         }
 
-        public int UpdateEmployee(EmployeeUpdateDto Entity)
+        public async Task<int> UpdateEmployee(EmployeeUpdateDto Entity)
         {
 
 
             var employee = _mapper.Map<Employee>(Entity);
 
+
+
+            var Result = _UnitOfWork.EmployeeRepository.GetAllQueryable().AsNoTracking().
+                FirstOrDefault(e => e.Id == Entity.Id);
+
+
+
+            var OldImage = Result?.ImageName ?? "";
+
+
+
+            if (Entity.Image is not null)
+            {
+
+                employee.ImageName = await _attachmentService.Upload(Entity.Image, "Images", OldImage);
+            }
+
+            else
+            {
+
+                if (string.IsNullOrEmpty(OldImage))
+                    employee.ImageName = null;
+
+                else
+                    employee.ImageName = OldImage;
+            }
 
 
 
@@ -147,6 +191,39 @@ namespace Project.BLL.Services.Employees
             _UnitOfWork.EmployeeRepository.Update(employee);
 
             return _UnitOfWork.Complete();
+
+        }
+
+
+        public async Task<bool> DeleteProfileImage(int Id)
+        {
+
+
+            var employee = _UnitOfWork.EmployeeRepository.GetById(Id);
+
+            var ImageName = employee.ImageName;
+
+            var FolderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\File", "Images", ImageName);
+
+
+
+
+            if (_attachmentService.Delete(FolderPath))
+            {
+
+                employee.ImageName = null;
+
+                _UnitOfWork.EmployeeRepository.Update(employee);
+
+
+                _UnitOfWork.Complete();
+
+                return true;
+            };
+
+
+            return false;
+
 
         }
 

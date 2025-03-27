@@ -9,6 +9,38 @@
 <div class="container mt-5">
 
 
+    <div class="container mt-4 d-flex justify-content-center">
+        <div class="card" style="width: 18rem;">
+
+
+            <img src="~/File//Images/@(Model.ImageName!=null?Model.ImageName:"NotFound.jpg")"
+                 class="card-img-top rounded-circle" alt="Profile Image" onerror="this.onerror=null; this.src='/File/Images/NotFound.jpg';">
+            <div class="card-body text-center">
+
+
+                @if (Model.ImageName != null)
+                {
+
+
+                    <form asp-action="DeleteImage" method="post">
+
+
+
+                        <input type="hidden" name="Id" value="@Model.Id" readonly />
+
+
+                        <button type="submit" class="btn btn-primary">Remove Image</button>
+
+
+
+                    </form>
+
+
+                }
+
+            </div>
+        </div>
+    </div>
    
 
 

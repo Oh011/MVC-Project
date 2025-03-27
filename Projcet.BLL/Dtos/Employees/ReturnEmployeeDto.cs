@@ -38,5 +38,8 @@ namespace Project.BLL.Dtos.Employees
         public string? Department { get; set; }
 
 
+        public string? ImageName { get; set; }
+
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.AspNetCore.Http;
 using Project.DAL.Entites.Common.Enums;
 using System.ComponentModel.DataAnnotations;
 
@@ -59,7 +60,7 @@ namespace Project.BLL.Dtos.Employees
 
 
 
-
+        public IFormFile? Image { get; set; }
 
     }
 }

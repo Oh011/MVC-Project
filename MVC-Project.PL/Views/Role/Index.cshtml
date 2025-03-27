@@ -1,0 +1,122 @@
+﻿@model IEnumerable<RolesViewModel>
+@{
+    ViewData["Title"] = "Index";
+    ViewData["Name"] = "Role";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center">All Roles</h1>
+
+
+@if (!string.IsNullOrEmpty(TempData["Msg"] as string))
+{
+
+    <div class="position-fixed bottom-0 end-0 p-3">
+        <div id="myToast" class="toast show align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body ">
+
+
+
+                    @TempData["Msg"]
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+}
+
+
+
+<div class="CreateButton">
+
+
+    <a class=" btn btn-primary" asp-action="Create">Create Role</a>
+</div>
+
+
+
+<div class="Search Container">
+
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="search-container">
+
+
+                    <form asp-action="SearchByName" method="get" class="d-flex justify-content-center gap-1">
+
+                        <input id="RoleSearch" type="text" name="Name" class="form-control search-input" placeholder="Search by Email">
+
+                        <button type="submit" class="btn btn-outline-primary">
+                            <i class="fas fa-search"></i>
+                        </button>
+
+
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<div class="Tables">
+
+    @if (Model.Count() > 0)
+    {
+
+        <table class="table table-striped mt-3">
+
+            <thead>
+                <tr class="text-center">
+
+                    <th scope="col">@Html.DisplayNameFor(r => r.Id)</th>
+                    <th scope="col">@Html.DisplayNameFor(r => r.Name)</th>
+                    
+
+                    <th scope="col">Details</th>
+                    <th scope="col">Update</th>
+                    <th scope="col">Delete</th>
+
+                </tr>
+            </thead>
+
+
+
+
+            <div id="test">
+
+                <partial name="PartialViews\ReturnPartial" model="@Model"></partial>
+
+            </div>
+
+
+
+        </table>
+
+    }
+
+
+    else
+    {
+
+
+        <div class="alert alert-info mt-3">
+            <h2>No Roles found</h2>
+
+        </div>
+
+
+    }
+</div>
+
+

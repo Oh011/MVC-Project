@@ -11,14 +11,15 @@ namespace Project.BLL.Services.Employees
         public ReturnEmployeeDetailsDto? GetEmployeeById(int id);
 
 
-        public int CreateEmployee(CreateEmployeeDto employee);
+        public Task<int> CreateEmployee(CreateEmployeeDto employee);
 
 
-        public int UpdateEmployee(EmployeeUpdateDto employee);
+        public Task<int> UpdateEmployee(EmployeeUpdateDto employee);
 
         bool DeleteEmployee(int id);
 
 
+        public Task<bool> DeleteProfileImage(int Id);
 
         public IEnumerable<ReturnEmployeeDto> SearchByName(string name);
 

@@ -1,0 +1,75 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+}
+
+
+
+
+
+
+<div class="Form-Container   d-flex justify-content-center align-items-center">
+
+
+
+    <div class="inside">
+
+        <h2 class="text-center text-white">Sign Up</h2>
+
+        <form asp-action="Register" method="post" class="mt-4 d-flex align-items-center gap-2 flex-column">
+
+
+            <div asp-validation-summary="ModelOnly"></div>
+
+            <input asp-for="FName" placeholder="First name" class="FormInput">
+            <span class="text-danger fw-bold align-self-start ps-3" asp-validation-for="FName"></span>
+
+            <input asp-for="LName" placeholder="Last Name" class="FormInput">
+            <span class="text-danger fw-bold align-self-start ps-3" asp-validation-for="LName"></span>
+
+            <input asp-for="Email" placeholder="Email" class="FormInput">
+            <span class="text-danger fw-bold align-self-start ps-3" asp-validation-for="Email"></span>
+
+
+            <input asp-for="Password" type="password" placeholder="Password" class="FormInput">
+            <span class="text-danger fw-bold align-self-start ps-3" asp-validation-for="Password"></span>
+
+            <input asp-for="ConfirmPassword" type="password" placeholder="Confirm Password" class="FormInput">
+            <span class="text-danger fw-bold align-self-start ps-3" asp-validation-for="ConfirmPassword"></span>
+
+
+
+            <div>
+                <input type="checkbox" asp-for="IsAgree" />
+                <span class="text-white fw-bold">I Agree to Terms and Conditions</span>
+
+            </div>
+
+
+            <button class="btn btn-primary w-50 mt-1">Sign Up</button>
+
+
+
+
+        </form>
+
+        <p class="text-center mt-3">Already Have Account ? <a class="link-light" asp-action="LogIn">Log In</a></p>
+
+    </div>
+
+
+</div>
+
+
+
+@section ValidationScripts {
+
+
+
+    <partial name="_ValidationScriptsPartial"></partial>
+
+}
+
+
+

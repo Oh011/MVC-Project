@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MVC_Project.ViewModels.Departments;
 using Project.BLL.Dtos.Departments;
 using Project.BLL.Services.Departments;
 
 namespace MVC_Project.Controllers
 {
+
+    [Authorize]
     public class DepartmentController : Controller
     {
 
