@@ -56,6 +56,7 @@ namespace MVC_Project
 
             builder.Services.ConfigureApplicationCookie(options =>
             {
+                options.AccessDeniedPath = "/Home/Error";
                 options.LoginPath = "/Account/Login";  // Redirect to Login when unauthorized
                 options.AccessDeniedPath = "/Account/AccessDenied"; // Optional: Access Denied Page
             });

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MVC_Project.ViewModels.User;
@@ -6,6 +7,8 @@ using Projcet.DAL.Entites.Identity;
 
 namespace MVC_Project.Controllers
 {
+
+    [Authorize]
     public class UserController : Controller
     {
 
